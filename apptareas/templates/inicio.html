@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main class="container py-5">
+    <section class="card card-body">
+        <h1 class="display-1 text-center">Tareas</h1>
+        <p>La palabra tarea es utilizada para referir una actividad o práctica que es demandada por diversos motivos como académicos, laborales, domésticos, etc. Generalmente estas actividades o prácticas se encuentran enmarcadas en un tiempo determinado o situación específica. En otras palabras, las tareas son obras o trabajos a desarrollar que se encuentran delimitadas por ciertas reglas (tiempo, espacio, formas, medios, etc.). Un ejemplo claro del uso de la palabra tarea, es cuando se hace mención a las actividades que quedan pendientes a realizar en situaciones académicas, es decir, cuando un docente dice: “para la siguiente clase deberán hacer de tarea las siguientes cosas…”. </p>
+        <p>Esta aplicación pretende ser una ayuda en la gestión de las tareas diarias de cualquier ámbito, para operar hay que estar registrado, cada usuario tiene sus propias tareas, espero cumpla su cometido de forma eficiente. 
+        </p>
+        <p>R. Lado</p>
+        <p>v 1.0</p>
+        <div class="text-center">
+            {% if user.is_authenticated %}
+            <a class="btn btn-secondary" href="tareas/">Tareas Pendientes de {{user.username}}</a>
+            <a class="btn btn-dark" href="logout/">Cerrar Sesión</a>
+            {% else %}
+            <a class="btn btn-secondary" href="login/">Iniciar Sesión</a>
+            {% endif %}
+        </div>
+    </section>
+    </main>
+{% endblock %}

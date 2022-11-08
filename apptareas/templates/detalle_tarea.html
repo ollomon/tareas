@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-10 offset-md-1 mt-2">
+            <p class="text-danger">{{error}}</p>
+            <h4 class="text-secondary"><strong>{{tarea.tarea}}</strong></h4>
+            <form method="POST" class="card card-body">
+                {% csrf_token %}
+                <table>
+                    {{formulario.as_table}}
+                </table>
+                <button class="btn btn-primary">Aceptar</button>
+            </form>
+            <div class="btn btn-group d-flex justify-content-between">
+                <form action ="{% url 'finalizar_tarea' tarea.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success">Finalizar</button>
+                </form>
+                <form action ="{% url 'activar_tarea' tarea.id %}" method="POST">
+                    {% csrf_token %}
+                    <button class="btn btn-success">Activar</button>
+                </form>
+                <a class="btn btn-danger" onclick=confirmar()>Eliminar</a>
+                <form action ="{% url 'eliminar_tarea' tarea.id %}" method="POST">
+                    {% csrf_token %}
+                    <button hidden class="btn btn-danger" id="eliminar">Eliminar</button>
+                </form>
+            </div>
+            <br>
+        </div>
+    </div>
+</main>
+<script>
+    function confirmar(){
+        if (confirm("¿Desea Eliminar el Registro Actual?") == true){
+            var idboton = document.getElementById("eliminar");
+            idboton.click();
+        }
+    }
+</script>
+
+{% endblock %}

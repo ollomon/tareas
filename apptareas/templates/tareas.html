@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{page_obj}}
+<main class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h4 class="text-center py-1 fw-bold">{{titulo_pagina}}</h4>
+            {% if user %}
+            <ul class="list-group">
+                {% for tarea in tareas %}
+                    <a class="list-group-item" href="{% url 'detalle_tarea' tarea.id %}">
+                        <header class="d-flex justify-content-between">
+                            {% if tarea.importante %}
+                                <p class="fw-bold text-danger">{{tarea.tarea}}</p>
+                            {% else %}
+                                <p class="fw-bold">{{tarea.tarea}}</p>
+                            {% endif %}
+                            <p>({{tarea.estado}}) </p>
+                        </header>
+                    </a>
+                {% endfor %}
+                {% include 'paginacion.html' %}
+            </ul>
+            {% endif %}
+        </div>
+    </div>
+</main>
+{% endblock %}

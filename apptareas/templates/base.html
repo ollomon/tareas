@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <title>Tareas</title>
+</head>
+<body>
+<div class="container">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            {% if user.is_authenticated %}
+            <a class="navbar-brand" href="/">TAREAS - ({{user.username}})</a>
+            {% else %}
+            <a class="navbar-brand" href="/">TAREAS</a>
+            {% endif %}
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Inicio</a></li>
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="/tareas">Tareas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'tareas_fin' %}">Tareas Finalizadas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'tareas_todas' %}">Todas las Tareas</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/tareas/crear/">Nueva Tarea</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Cerrar Sesión</a></li>
+                {% else %}
+                    <li class="nav-item"><a class="nav-link" href="/login">Iniciar Sesión</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/registro">Registro</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% if tareas.has_other_pages %}
+    <div class="btn-group" role="group" aria-label="Item pagination">
+        {% if tareas.has_previous %}
+            <a href="?page={{ tareas.previous_page_number }}" class="btn btn-outline-primary">&laquo;</a>
+        {% endif %}
+
+        {% for pagina in tareas.paginator.page_range %}
+            {% if tareas.number == pagina %}
+                <button class="btn btn-outline-primary active">
+                    <span>{{ pagina }}</span>
+                </button>
+            {% else %}
+                <a href="?page={{ pagina }}" class="btn btn-outline-primary">
+                    {{ pagina }}
+                </a>
+            {% endif %}
+        {% endfor %}
+
+        {% if tareas.has_next %}
+            <a href="?page={{ tareas.next_page_number }}" class="btn btn-outline-primary">&raquo;</a>
+        {% endif %}
+    </div>
+    {% endif %}

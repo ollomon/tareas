@@ -14,7 +14,7 @@ class Tarea(models.Model):
         ('Finalizado','Finalizado')
     )
     estado = models.CharField(max_length=10, choices=estados, default='Pendiente')
-    fechafin = models.DateTimeField(null=True, blank=True) 
+    fechafin = models.DateTimeField(null=True, blank=True, verbose_name="Fecha Finalización") 
     importante = models.BooleanField(default=False)
     usuario = models.ForeignKey(User, on_delete=models.RESTRICT)
 

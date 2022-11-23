@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from apptareas import views
+from apptareas.views import page_not_found_404
+handler404 = page_not_found_404
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -13,7 +13,6 @@ from django.core.paginator import Paginator
 def inicio(request):
     return render(request, 'inicio.html')
 
-
 def registro(request):
     if request.method == 'GET':
         return render(request, 'registro.html', {'form': UserCreationForm()})
@@ -161,3 +160,7 @@ def eliminarTarea(request, tarea_id):
     if request.method == 'POST':
         tarea.delete()
         return redirect('tareas')
+
+def page_not_found_404(request, exception):
+    return render(request, '404.html')
+

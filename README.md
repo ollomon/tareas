@@ -8,6 +8,7 @@ con los siguientes datos:
 ------------------------------------------------------------------
 SECRET_KEY = <'valor de la clave secreta'>
 
+# Datos para la base de datos MySQL
 MYSQL_HOST = <'nombre del host donde está la base de datos'>
 MYSQL_DB = <'nombre de la base de datos'>
 MYSQL_USER = <'nombre usuario de la base de datos'>

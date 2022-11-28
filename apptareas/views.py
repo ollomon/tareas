@@ -164,3 +164,17 @@ def eliminarTarea(request, tarea_id):
 def page_not_found_404(request, exception):
     return render(request, '404.html')
 
+@login_required
+def buscar_tarea(request):
+    if request.method == 'GET':
+        buscar = request.GET.get('tbuscar')
+        print("buscar:", buscar)
+        tareas_lista = Tarea.objects.filter(
+            usuario=request.user, tarea__icontains=buscar).order_by('fecha', "hora").reverse()
+        paginator = Paginator(tareas_lista, 9)
+        pagina = request.GET.get('page')
+        tareas = paginator.get_page(pagina)
+        return render(request, 'tareas.html', {
+            'tareas': tareas,
+            'titulo_pagina': 'Resultado Buscar Tarea'
+        })

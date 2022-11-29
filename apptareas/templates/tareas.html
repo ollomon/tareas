@@ -4,19 +4,28 @@
 {{page_obj}}
 <main class="container">
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-10 offset-md-1">
             <h4 class="text-center py-1 fw-bold">{{titulo_pagina}}</h4>
             {% if user %}
             <ul class="list-group">
                 {% for tarea in tareas %}
                     <a class="list-group-item" href="{% url 'detalle_tarea' tarea.id %}">
                         <header class="d-flex justify-content-between">
+                            <div class="col-sd-1">
+                                <p>{{tarea.fecha|date:'d/m/Y'}}</p>
+                            </div>
                             {% if tarea.importante %}
+                            <div class="col-md-9">
                                 <p class="fw-bold text-danger">{{tarea.tarea}}</p>
+                            </div>
                             {% else %}
+                            <div class="col-md-9">
                                 <p class="fw-bold">{{tarea.tarea}}</p>
+                            </div>
                             {% endif %}
-                            <p>({{tarea.estado}}) </p>
+                            <div class="col-sd-1">
+                                <p>({{tarea.estado}})</p>
+                            </div>
                         </header>
                     </a>
                 {% endfor %}

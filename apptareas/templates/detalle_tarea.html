@@ -14,14 +14,6 @@
                 <button class="btn btn-primary">Aceptar</button>
             </form>
             <div class="btn btn-group d-flex justify-content-between">
-                <form action ="{% url 'finalizar_tarea' tarea.id %}" method="POST">
-                    {% csrf_token %}
-                    <button class="btn btn-success">Finalizar</button>
-                </form>
-                <form action ="{% url 'activar_tarea' tarea.id %}" method="POST">
-                    {% csrf_token %}
-                    <button class="btn btn-success">Activar</button>
-                </form>
                 <a class="btn btn-danger" onclick=confirmar()>Eliminar</a>
                 <form action ="{% url 'eliminar_tarea' tarea.id %}" method="POST">
                     {% csrf_token %}
@@ -34,7 +26,7 @@
 </main>
 <script>
     function confirmar(){
-        if (confirm("¿Desea Eliminar el Registro Actual?") == true){
+        if (confirm("¿Desea Eliminar la Tarea Actual?", "Si", "No") == true){
             var idboton = document.getElementById("eliminar");
             idboton.click();
         }

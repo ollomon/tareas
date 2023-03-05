@@ -27,7 +27,8 @@ class FormularioTarea(forms.ModelForm):
         estado = cleaned_data.get('estado')
 
         if estado == 'Finalizado':
-            cleaned_data['fechafin'] = datetime.now()
+            if cleaned_data['fechafin'] == '' or cleaned_data['fechafin'] == None:
+                cleaned_data['fechafin'] = datetime.now()
         else:
             cleaned_data['fechafin'] = None
         
